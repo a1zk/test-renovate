@@ -10,7 +10,7 @@ halo==0.0.31
 idna==3.3
 log-symbols==0.0.14
 multidict==6.0.2
-python-weather==0.3.6
+python-weather==0.3.7
 six==1.16.0
 spinners==0.0.24
 termcolor==1.1.0
