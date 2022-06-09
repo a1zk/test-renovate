@@ -1,5 +1,14 @@
 {
   "extends": [
     "config:base"
+  ],
+  "enabledManagers": ["pip_requirements"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [".*"],
+      "groupName": "Python packages",
+      "matchUpdateTypes": ["minor", "patch"],
+    }
   ]
+  
 }
