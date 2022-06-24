@@ -1,7 +1,10 @@
 {
   "enabledManagers": ["pip_requirements", "flux"],
   "flux": {
-    "fileMatch": ["infra/k8s-local/.+\\.yaml$"]
+    "fileMatch": [
+      "infra/.+\\.yaml$",
+      "cluster/.+\\.yaml$"
+    ]
   },
   "packageRules": [
     {
