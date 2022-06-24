@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: kyverno
+spec:
+  releaseName: kyverno
+  chart:
+    spec:
+      chart: kyverno
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+        namespace: kyverno
+      # Version set per environment
+      version: 2.2.1
+  interval: 15m
+  install:
+    remediation:
+      retries: 5
+  values:
+    replicaCount: 1
+    # image:
+    #   tag: v1.5.2
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    config:
+  # resource types to be skipped by kyverno policy engine
+  # Make sure to surround each entry in quotes so that it doesn't get parsed
+  # as a nested YAML list. These are joined together without spaces in the configmap
+      resourceFilters:
+      - "[Event,*,*]"
+      - "[*,kube-system,*]"
+      - "[*,flux-system,*]"
+      - "[*,kube-public,*]"
+      - "[*,kube-node-lease,*]"
+      - "[Node,*,*]"
+      - "[APIService,*,*]"
+      - "[TokenReview,*,*]"
+      - "[SubjectAccessReview,*,*]"
+      - "[SelfSubjectAccessReview,*,*]"
+      - "[*,kyverno,*]"
+      - "[Binding,*,*]"
+      - "[ReplicaSet,*,*]"
+      - "[ReportChangeRequest,*,*]"
+      - "[ClusterReportChangeRequest,*,*]"

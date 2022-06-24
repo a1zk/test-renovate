@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: kyverno
+spec:
+  releaseName: kyverno
+  chart:
+    spec:
+      # https://github.com/kyverno/kyverno/blob/v1.6.3/charts/kyverno/Chart.yaml#L3
+      # Will installed version v1.6.3 due to compatibility matrix with k8s API
+      # When we upgrade to k8s 1.21 we can use version 1.7.x
+      version: 2.3.4
+  values:
+    image:
+      tag: v1.6.3@sha256:83e3f51b6764408da347eed2dc7e1e2c9d10cf78bc55fe63bc69d1a90acbbdd0
+    initImage:
+      tag: v1.6.3@sha256:89b6cde0797b47b9d6ef8764322160b3228e90c340cc57a9051a00ce094f08ad
+    replicaCount: 3
+    priorityClassName: first
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - kyverno
+          topologyKey: kubernetes.io/zone
+        weight: 100
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - kyverno
+        topologyKey: kubernetes.io/hostname
+    extraArgs:
+    - -backgroundScan=5m
+    resources:
+      limits:
+        memory: 384Mi
+        cpu: "1"
+      requests:
+        cpu: 200m
+        memory: 256Mi
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
+    config:
+      metricsConfig:
+        metricsRefreshInterval: 1h
+    serviceMonitor:
+      enabled: false
+      interval: 60s
+    # Leaving it here for a case where we might have restrictive network policies
+    networkPolicy:
+      enabled: false
+    # A list of valid from selectors according to https://kubernetes.io/docs/concepts/services-networking/network-policies
+      ingressFrom: []
