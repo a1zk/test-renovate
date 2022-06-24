@@ -1,11 +1,21 @@
 {
-  "enabledManagers": ["pip_requirements"],
+  "enabledManagers": ["pip_requirements", "flux"],
+  "flux": {
+    "fileMatch": ["infra/k8s-local/.+\\.yaml$"]
+  },
   "packageRules": [
+    {
+      "matchDatasources": ["flux"],
+      "matchPackagePatterns": [".*"],
+      "groupName": "Flux packages",
+      "matchUpdateTypes": ["minor", "patch"]
+    },
     {
       "matchPackagePatterns": [".*"],
       "groupName": "Python packages",
       "matchUpdateTypes": ["minor", "patch"]
     }
+      
   ]
   
 }
