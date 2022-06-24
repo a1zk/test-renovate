@@ -1,0 +1,14 @@
+
+---
+# This is the first file to be processed for this cluster
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Include flux-system create files as base
+# in order to be able to patch them
+bases:
+- ./flux-system
+
+# Include infra resources
+resources:
+- ./infrastructure.yaml
