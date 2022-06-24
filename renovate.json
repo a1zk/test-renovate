@@ -4,7 +4,8 @@
     "includePaths": [
       "infra/k8s-local/**",
       "cluster/**"
-    ]
+    ],
+    "fileMatch": [".*\\.yaml$"]
   },
   "packageRules": [
     {
