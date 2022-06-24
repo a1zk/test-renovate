@@ -18,7 +18,6 @@ spec:
     initImage:
       tag: v1.6.3@sha256:89b6cde0797b47b9d6ef8764322160b3228e90c340cc57a9051a00ce094f08ad
     replicaCount: 3
-    priorityClassName: first
     extraArgs:
     - -backgroundScan=5m
     resources:
