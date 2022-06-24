@@ -1,11 +1,10 @@
 {
   "enabledManagers": ["pip_requirements", "flux"],
   "flux": {
-    "includePaths": [
-      "infra/k8s-local/**",
-      "cluster/**"
-    ],
-    "fileMatch": [".*\\.yaml$"]
+    "fileMatch": [
+      "clusters/.+\\.ya?ml$",
+      "infra/k8s-local/.+\\.ya?ml$"
+    ]
   },
   "packageRules": [
     {
