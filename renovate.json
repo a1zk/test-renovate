@@ -13,7 +13,8 @@
       "matchUpdateTypes": ["minor", "patch"]
     },
     {
-      "matchPackagePatterns": [".*"],
+      "matchDatasources": ["pypi"],
+      //"matchPackagePatterns": [".*"],
       "groupName": "Python packages",
       "matchUpdateTypes": ["minor", "patch"]
     }
