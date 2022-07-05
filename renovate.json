@@ -14,7 +14,6 @@
     },
     {
       "matchDatasources": ["pypi"],
-      //"matchPackagePatterns": [".*"],
       "groupName": "Python packages",
       "matchUpdateTypes": ["minor", "patch"]
     }
