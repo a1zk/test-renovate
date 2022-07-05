@@ -8,9 +8,10 @@ spec:
   releaseName: kyverno
   chart:
     spec:
-      # https://github.com/kyverno/kyverno/blob/v1.6.3/charts/kyverno/Chart.yaml#L3
-      # Will installed version v1.6.3 due to compatibility matrix with k8s API
-      # When we upgrade to k8s 1.21 we can use version 1.7.x
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+        namespace: kyverno
       version: 2.3.4
   values:
     image:
