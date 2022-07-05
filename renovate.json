@@ -3,7 +3,7 @@
   "flux": {
     "fileMatch": [
       "clusters/.+\\.ya?ml$",
-      "infra/k8s-local/.+\\.ya?ml$"
+      "infra/base/.+\\.ya?ml$"
     ]
   },
   "packageRules": [
