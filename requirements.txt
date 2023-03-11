@@ -13,6 +13,6 @@ multidict==6.0.2
 python-weather==0.3.6
 six==1.16.0
 spinners==0.0.24
-termcolor==1.1.0
+termcolor==2.2.0
 xmltodict==0.13.0
 yarl==1.7.2
