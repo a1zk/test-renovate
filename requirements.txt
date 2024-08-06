@@ -4,7 +4,7 @@ async-timeout==4.0.3
 attrs==24.2.0
 charset-normalizer==3.3.2
 colorama==0.4.6
-emoji==1.7.0
+emoji==2.12.1
 frozenlist==1.4.1
 halo==0.0.31
 idna==3.7
